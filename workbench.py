@@ -51,6 +51,14 @@ class Workbench:
         """
         return self.notes
 
+    def get_all_sorted_by_create(self):
+        sorted_notes = sorted(self.notes, key=lambda x: x.get_date_create())
+        return sorted_notes
+
+    def get_all_sorted_by_change(self):
+        sorted_notes = sorted(self.notes, key=lambda x: x.get_date_change())
+        return sorted_notes
+
     def get_some_note(self, list_id):
         """
         Возвразает записку по номеру в списке

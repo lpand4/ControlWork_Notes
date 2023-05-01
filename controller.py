@@ -27,6 +27,10 @@ class Controller:
                         self.get_one()
                     case "6":
                         self.save()
+                    case '7':
+                        self.get_all_sorted_by_create()
+                    case '8':
+                        self.get_all_sorted_by_change()
                     case "0":
                         return
                     case _:
@@ -54,6 +58,20 @@ class Controller:
     def get_all(self):
         if len(self.wb.notes) > 0:
             data = self.wb.get_all_notes()
+            view.show_all_notes(data)
+        else:
+            print("Список записок пуст!")
+
+    def get_all_sorted_by_create(self):
+        if len(self.wb.notes) > 0:
+            data = self.wb.get_all_sorted_by_create()
+            view.show_all_notes(data)
+        else:
+            print("Список записок пуст!")
+
+    def get_all_sorted_by_change(self):
+        if len(self.wb.notes) > 0:
+            data = self.wb.get_all_sorted_by_change()
             view.show_all_notes(data)
         else:
             print("Список записок пуст!")
