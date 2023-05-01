@@ -15,8 +15,14 @@ class Note:
         self.note_id = note_id
         self.head_note = head_note
         self.body_note = body_note
-        self.date_create = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
-        self.date_change = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
+        if date_create == '':
+            self.date_create = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
+        else:
+            self.date_create = date_create
+        if date_change == '':
+            self.date_change = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
+        else:
+            self.date_change = date_change
 
     def __str__(self):
         """
@@ -32,7 +38,7 @@ class Note:
     @classmethod
     def from_dict(cls, d):
         return cls(note_id=d['note_id'], head_note=d['head_note'], body_note=d['body_note'],
-                   date_create=d['date_create'], date_change=d['date_change'] )
+                   date_create=d['date_create'], date_change=d['date_change'])
 
     def get_id(self):
         """

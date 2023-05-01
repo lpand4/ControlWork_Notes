@@ -51,13 +51,13 @@ class Workbench:
         """
         return self.notes
 
-    def get_note(self, list_id):
+    def get_some_note(self, list_id):
         """
         Возвразает записку по номеру в списке
         :param list_id: Номер в списке
         :return: Записку
         """
-        self.notes[list_id - 1].get_note()
+        return self.notes[list_id - 1].get_note()
 
     def save_notes(self):
         if len(self.notes) > 0:

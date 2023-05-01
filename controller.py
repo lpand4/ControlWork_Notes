@@ -59,7 +59,7 @@ class Controller:
     def get_one(self):
         self.get_all()
         number = view.list_id()
-        view.show_note(self.wb.get_note(number))
+        view.show_note(self.wb.get_some_note(number))
 
     def save(self):
         self.wb.save_notes()
