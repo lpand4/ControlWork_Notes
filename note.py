@@ -4,15 +4,15 @@ from datetime import *
 class Note:
     """Заметка"""
 
-    def __init__(self, id, head_note, body_note):
+    def __init__(self, note_id, head_note, body_note):
         """
-        :param id: Идентификатор
+        :param note_id: Идентификатор
         :param head_note: Заголовок записки
         :param body_note: Текст записки
         :param date_create: Задается автоматически дата создания
         :param date_change: Задается автоматически дата последнего изменения
         """
-        self.id = id
+        self.note_id = note_id
         self.head_note = head_note
         self.body_note = body_note
         self.date_create = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
@@ -22,7 +22,7 @@ class Note:
         """
         :return: Выводит строку общих сведений
         """
-        return f"{id}| {self.head_note}. \n" \
+        return f"ID_{self.note_id}| {self.head_note}. \n" \
                f"Created: {self.date_create} | Last change: {self.date_change}"
 
     def get_id(self):
@@ -30,7 +30,7 @@ class Note:
         Получение идентификатора записки
         :return: ID записки
         """
-        return self.id
+        return self.note_id
 
     def get_head(self):
         """
@@ -65,7 +65,7 @@ class Note:
         Вывод записки полностью
         :return: Строку записки целиком
         """
-        return f"ID_{self.id}| {self.head_note}.\n\n" \
+        return f"ID_{self.note_id}| {self.head_note}.\n\n" \
                f"{self.body_note}\n\n" \
                f"Created: {self.date_create} | Last change: {self.date_change}\n"
 
@@ -80,7 +80,7 @@ class Note:
         """Изменение текста записки
         :param new_body: Новый текст
         """
-        self.head_note = new_body
+        self.body_note_note = new_body
         self.date_change = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
 
     def set_note(self, new_head, new_body):
