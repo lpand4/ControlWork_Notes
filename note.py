@@ -95,7 +95,7 @@ class Note:
         """Изменение текста записки
         :param new_body: Новый текст
         """
-        self.body_note_note = new_body
+        self.body_note = new_body
         self.date_change = datetime.now().strftime("%H:%M:%S - %Y.%m.%d")
 
     def set_note(self, new_head, new_body):

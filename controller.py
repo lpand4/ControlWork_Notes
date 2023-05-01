@@ -10,7 +10,7 @@ class Controller:
     def start(self):
         view.start_menu()
         start_initiation = input()
-        if start_initiation == '0':
+        if start_initiation != '0':
             while True:
                 view.show_menu()
                 user_choice = input()
@@ -31,6 +31,8 @@ class Controller:
                         return
                     case _:
                         print("Введено неверное значение! Введите значение из списка меню")
+        else:
+            print("Счастливо!!!")
 
     def add(self):
         head = view.head_note()
