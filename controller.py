@@ -1,11 +1,11 @@
 import view
 from workbench import Workbench
 
+
 class Controller:
 
     def __init__(self):
         self.wb = Workbench()
-
 
     def start(self):
         view.start_menu()
@@ -13,22 +13,24 @@ class Controller:
         if start_initiation == '0':
             while True:
                 view.show_menu()
-                user_choice = int(input())
+                user_choice = input()
                 match user_choice:
-                    case 1:
+                    case "1":
                         self.add()
-                    case 2:
+                    case "2":
                         self.update()
-                    case 3:
+                    case "3":
                         self.delete()
-                    case 4:
+                    case "4":
                         self.get_all()
-                    case 5:
+                    case "5":
                         self.get_one()
-                    case 6:
+                    case "6":
                         self.save()
-                    case 0:
+                    case "0":
                         return
+                    case _:
+                        print("Введено неверное значение! Введите значение из списка меню")
 
     def add(self):
         head = view.head_note()
@@ -54,12 +56,10 @@ class Controller:
         else:
             print("Список записок пуст!")
 
-
     def get_one(self):
         self.get_all()
         number = view.list_id()
         view.show_note(self.wb.get_note(number))
 
     def save(self):
-
         self.wb.save_notes()

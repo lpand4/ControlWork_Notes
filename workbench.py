@@ -7,8 +7,9 @@ class Workbench:
 
     def __init__(self):
         self.notes = []
+        self.load_notes()
         self.list_id = 0
-        #self.load_notes()
+        self.set_list_id()
 
     def __str__(self):
         list_notes = ''
@@ -16,8 +17,8 @@ class Workbench:
             list_notes += note
         return list_notes
 
-    def set_list_id(self, new_list_id):
-        self.list_id = new_list_id
+    def set_list_id(self):
+        self.list_id = self.notes[-1].get_id() + 1
 
     def add_note(self, head_note, body_note):
         """
@@ -26,7 +27,7 @@ class Workbench:
         :param body_note: текст записки
         """
         self.notes.append(Note(self.list_id, head_note, body_note))
-        self.set_list_id(new_list_id=self.list_id + 1)
+        self.list_id += 1
 
     def update_note(self, list_id, head_note, body_note):
         """
@@ -50,7 +51,7 @@ class Workbench:
         """
         return self.notes
 
-    def get_note(self,list_id):
+    def get_note(self, list_id):
         """
         Возвразает записку по номеру в списке
         :param list_id: Номер в списке
@@ -60,14 +61,18 @@ class Workbench:
 
     def save_notes(self):
         if len(self.notes) > 0:
+            note_dict = [note.__dict__() for note in self.notes]
+            json_note = json.dumps(note_dict)
             with open("data_notes.json", 'w') as wf:
-                for note in self.notes:
-                    json.dump(note, wf)
+                wf.write(json_note)
         else:
             print('Еще не создано ни одной записки!')
 
     def load_notes(self):
         with open("data_notes.json", 'r') as rf:
-            data = json.load(rf)
-        for d in data:
-            self.notes.append(d)
+            json_data = rf.read()
+            note_dict = json.loads(json_data)
+
+        notes = [Note.from_dict(dict_) for dict_ in note_dict]
+        for note in notes:
+            self.notes.append(note)

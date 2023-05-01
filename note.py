@@ -4,7 +4,7 @@ from datetime import *
 class Note:
     """Заметка"""
 
-    def __init__(self, note_id, head_note, body_note):
+    def __init__(self, note_id, head_note, body_note, date_create='', date_change=''):
         """
         :param note_id: Идентификатор
         :param head_note: Заголовок записки
@@ -25,12 +25,21 @@ class Note:
         return f"ID_{self.note_id}| {self.head_note}. \n" \
                f"Created: {self.date_create} | Last change: {self.date_change}"
 
+    def __dict__(self):
+        return {"note_id": self.note_id, "head_note": self.head_note, "body_note": self.body_note,
+                "date_create": self.date_create, "date_change": self.date_change}
+
+    @classmethod
+    def from_dict(cls, d):
+        return cls(note_id=d['note_id'], head_note=d['head_note'], body_note=d['body_note'],
+                   date_create=d['date_create'], date_change=d['date_change'] )
+
     def get_id(self):
         """
         Получение идентификатора записки
         :return: ID записки
         """
-        return self.note_id
+        return int(self.note_id)
 
     def get_head(self):
         """
